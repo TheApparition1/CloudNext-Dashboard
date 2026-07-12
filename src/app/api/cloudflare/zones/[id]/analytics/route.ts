@@ -9,7 +9,7 @@ export async function GET(
         const { id } = await params;
         const analytics = await cf.dns.analytics.reports.bytimes.get({
             zone_id: id,
-            since: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+            since: new Date(Date.now() - 5 * 60 * 60 * 1000).toISOString(),
             until: new Date().toISOString(),
             metrics: 'queryCount'
         });
