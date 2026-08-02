@@ -1,36 +1,27 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## CloudNext Dashboard
 
-## Getting Started
+Cloudnext is a Open Source dashboard for managing Cloudflare resources.
 
-First, run the development server:
+At the present time, CloudNext only has monitoring support for the following resources:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Cloudflare Zones
+- Cloudflare DNS Records
+- Cloudflare SSL/TLS Settings
+- Cloudflare Analytics
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This is due to limitations of my current API Endpoints, and I am actively working on adding support for more data.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To install CloudNext, you will need to have Node.js and npm installed on your system. You can download and install Node.js from [nodejs.org](https://nodejs.org/).
+However to use Cloudnext, you need to make a User Token in your Cloudflare Account. You will need to give it the following permissions:
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Zone > DNS > Read
+* Zone > Zone > Read
+* Zone > Zone Settings > Read
+* Zone > Analytics > Read
+* Zone > SSL and Certificates > Read
+* Zone > Firewall Services > Read
+* Zone > Page Rules > Read
+* Zone > Load Balancers > Read
+* Zone > Health Checks > Read
