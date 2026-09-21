@@ -1,4 +1,6 @@
-import { ReactNode } from "react";
+'use client'
+
+import { ReactNode, useState } from "react";
 import Sidebar from "./Sidebar";
 
 interface DashboardLayoutProps {
@@ -29,11 +31,13 @@ const navigation = [
 ];
 
 export default function DashboardLayout({ children }: DashboardLayoutProps) {
-    return (
-        <div className="flex min-h-screen bg-gray-50">
-            <Sidebar items={navigation} />
+    const [Collapsed, setIsCollapsed] = useState(false)
 
-            <main className="flex-1 p-10">
+    return (
+        <div className="flex h-screen bg-gray-50 overflow-hidden">
+            <Sidebar items={navigation} Collapsed={Collapsed} onToggle={() => setIsCollapsed(!Collapsed)} />
+
+            <main className="flex-1 p-10 overflow-y-auto">
                 {children}
             </main>
         </div>
