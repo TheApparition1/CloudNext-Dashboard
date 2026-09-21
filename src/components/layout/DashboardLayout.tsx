@@ -8,19 +8,23 @@ interface DashboardLayoutProps {
 const navigation = [
     {
         label: "Overview",
-        active: true,
+        href: "/",
     },
     {
         label: "DNS",
+        href: "/dns",
     },
     {
         label: "SSL",
+        href: "/ssl",
     },
     {
         label: "Analytics",
+        href: "/analytics",
     },
     {
         label: "Settings",
+        href: "/settings",
     },
 ];
 
