@@ -2,21 +2,39 @@
   "name": "cloudnext",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"npm run dev\" \"wait-on http://localhost:3000 && electron .\"",
+    "electron:build": "npm run build && electron-builder"
   },
   "dependencies": {
-    "@clerk/nextjs": "^7.6.4",
     "cloudflare": "7.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "12.42.2",
     "lucide-react": "1.24.0",
-    "next": "16.2.10",
+    "next": "^16.3.5",
     "react": "19.2.4",
     "react-dom": "19.2.4"
+  },
+  "main": "electron/main.ts",
+  "build": {
+    "appId": "com.cloudnext.dashboard",
+    "productName": "CloudNext",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "electron/**/*",
+      "out/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
+    }
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -24,9 +42,13 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "concurrently": "^10.0.5",
+    "electron": "^44.4.3",
+    "electron-builder": "^26.15.3",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wait-on": "^9.1.0"
   }
 }
