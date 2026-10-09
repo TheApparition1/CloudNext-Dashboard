@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import cf from '@/lib/cloudflare/client';
 
 export async function GET(
     request: Request,
@@ -7,13 +6,26 @@ export async function GET(
 ) {
     try {
         const { id } = await params;
-        const ssl = await cf.zones.settings.get('ssl', {
-            zone_id: id
+        const response = await fetch(`https://api.cloudflare.com/client/v4/zones/${id}/settings/ssl`, {
+            headers: {
+                'Authorization': `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+                'Content-Type': 'application/json'
+            }
         });
-        return NextResponse.json(ssl);
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            return NextResponse.json({
+                error: 'Failed to fetch SSL settings',
+                details: data
+            }, { status: response.status });
+        }
+
+        return NextResponse.json(data.result);
     } catch (error) {
         console.error('SSL fetch error:', error);
-        return NextResponse.json({ 
+        return NextResponse.json({
             error: 'Failed to fetch SSL settings',
             details: error instanceof Error ? error.message : 'Unknown error'
         }, { status: 500 });
